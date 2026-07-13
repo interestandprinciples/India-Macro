@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RBI Macro · Curation</title>
+<meta name="description" content="Curate which macro-indicator charts appear in the dashboard and how each is rendered." />
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root,
+:root[data-theme="dark"] {
+  --bg-0: #0a0e17; --bg-1: #11182a; --bg-2: #182236;
+  --bg-elev: rgba(255,255,255,0.04);
+  --line: rgba(255, 255, 255, 0.08);
+  --txt-0: #f1f5fb; --txt-1: #c8d2e2; --txt-2: #8693ab; --txt-3: #5c6982;
+  --accent: #ffb74d; --accent-2: #4d8dff;
+  --good: #4ade80; --bad: #ef4444;
+  --radius: 12px;
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --bg-0: #f4f6fb; --bg-1: #ffffff; --bg-2: #f9fafc;
+  --bg-elev: rgba(15, 23, 42, 0.04);
+  --line: rgba(15, 23, 42, 0.08);
+  --txt-0: #0f172a; --txt-1: #334155; --txt-2: #64748b; --txt-3: #94a3b8;
+  --accent: #d97706; --accent-2: #2563eb;
+  --good: #16a34a; --bad: #dc2626;
+  --radius: 12px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg-0); color: var(--txt-0);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; }
+.mono { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; }
+
+.app { max-width: 1280px; margin: 0 auto; padding: 20px 24px 60px; }
+
+header.top {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+  padding: 14px 20px; background: var(--bg-elev); border: 1px solid var(--line);
+  border-radius: var(--radius); margin-bottom: 18px;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-mark { width: 36px; height: 36px; border-radius: 10px;
+  background: linear-gradient(135deg, #ff9933, #ffb74d, #4d8dff);
+  display: grid; place-items: center; font-weight: 800; color: #0a0e17; font-size: 16px; }
+.brand h1 { margin: 0; font-size: 17px; }
+.brand p { margin: 2px 0 0; font-size: 12px; color: var(--txt-2); }
+.spacer { flex: 1; }
+.btn {
+  padding: 8px 14px; border-radius: 9px; background: var(--chip-bg);
+  border: 1px solid var(--line); color: var(--txt-0); font-size: 12px;
+  cursor: pointer; transition: all 0.15s; display: inline-flex; align-items: center; gap: 6px;
+  font-family: inherit;
+}
+.btn:hover { background: var(--bg-elev); }
+.btn.primary { background: linear-gradient(135deg, #ff9933, #ffb74d); color: #0a0e17; border: none; font-weight: 600; }
+.btn.primary:hover { filter: brightness(1.1); }
+.btn.danger { color: #ef4444; border-color: rgba(239,68,68,0.3); }
+.btn.danger:hover { background: rgba(239,68,68,0.12); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.summary {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  padding: 12px 16px; background: var(--bg-elev); border: 1px solid var(--line);
+  border-radius: var(--radius); margin-bottom: 14px; font-size: 12px; color: var(--txt-2);
+}
+.summary strong { color: var(--txt-0); }
+
+/* Theme toggle (light/dark) */
+.theme-toggle { width: 36px; height: 36px; padding: 0; justify-content: center; }
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: inline-block; }
+:root[data-theme="light"] .theme-toggle .icon-sun { display: inline-block; }
+:root[data-theme="light"] .theme-toggle .icon-moon { display: none; }
+.curate-help {
+  background: rgba(255, 153, 51, 0.08);
+  border: 1px solid rgba(255, 153, 51, 0.25);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 12px 28px 0;
+  font-size: 12px;
+  color: var(--txt-1);
+  line-height: 1.6;
+}
+.curate-help strong { color: var(--accent); }
+.curate-help code {
+  background: var(--chip-bg);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-family: 'SF Mono', Menlo, monospace;
+}
+.summary .mode-chip { display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 8px; background: var(--chip-bg); border-radius: 6px;
+  font-weight: 500; color: var(--txt-0); }
+.summary .mode-chip.hide { color: var(--bad); background: rgba(239,68,68,0.1); }
+
+.toolbar {
+  display: flex; gap: 8px; align-items: center; padding: 10px 14px;
+  background: var(--bg-elev); border: 1px solid var(--line);
+  border-radius: var(--radius); margin-bottom: 14px; flex-wrap: wrap;
+}
+.search { flex: 1; min-width: 220px; }
+.search input {
+  width: 100%; padding: 9px 12px;
+  background: var(--bg-elev); border: 1px solid var(--line);
+  border-radius: 8px; color: var(--txt-0); font-size: 13px; font-family: inherit;
+}
+.search input:focus { outline: none; border-color: rgba(255,183,77,0.5); }
+.filter-chk { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--txt-2); cursor: pointer; }
+.filter-chk input { accent-color: var(--accent); }
+
+.theme {
+  background: var(--bg-elev); border: 1px solid var(--line);
+  border-radius: var(--radius); margin-bottom: 12px; overflow: hidden;
+}
+.theme-head {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px; cursor: pointer;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-elev);
+  user-select: none;
+}
+.theme-head:hover { background: var(--bg-elev); }
+.theme-icon { font-size: 16px; }
+.theme-title { flex: 1; font-weight: 600; font-size: 13px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--txt-0); }
+.theme-count { font-size: 11px; color: var(--txt-3); padding: 2px 8px; background: var(--chip-bg); border-radius: 999px; }
+.theme-actions { display: flex; gap: 6px; align-items: center; }
+.theme-actions select {
+  padding: 4px 8px; background: rgba(255,255,255,0.05); border: 1px solid var(--line);
+  border-radius: 6px; color: var(--txt-0); font-size: 11px; font-family: inherit;
+}
+.theme-actions button {
+  padding: 4px 10px; border-radius: 6px; background: rgba(255,255,255,0.05);
+  border: 1px solid var(--line); color: var(--txt-1); font-size: 11px;
+  cursor: pointer; font-family: inherit;
+}
+.theme-actions button:hover { background: rgba(255,255,255,0.1); color: var(--txt-0); }
+
+.series-table {
+  width: 100%; border-collapse: collapse; font-size: 12.5px;
+  table-layout: fixed;
+}
+.series-table th, .series-table td { padding: 10px 14px; text-align: left; vertical-align: middle; }
+.series-table th {
+  background: var(--bg-elev); color: var(--txt-2);
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.04em;
+  font-weight: 600; border-bottom: 1px solid var(--line);
+}
+.series-table tbody tr { border-bottom: 1px solid var(--line-2); }
+.series-table tbody tr.hidden { opacity: 0.5; }
+.series-table tbody tr:hover { background: var(--bg-elev); }
+.series-table .col-show { width: 60px; text-align: center; }
+.series-table .col-pin { width: 70px; text-align: center; }
+.series-table .col-name { width: auto; min-width: 200px; }
+.series-table .col-meta { width: 200px; font-size: 11px; color: var(--txt-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.series-table .col-mode { width: 240px; }
+.series-table .col-pin input { accent-color: var(--accent); width: 18px; height: 18px; cursor: pointer; }
+.series-table tbody tr.pinned { background: rgba(255, 153, 51, 0.05); }
+.series-table tbody tr.pinned::before {
+  content: "📌";
+  position: absolute;
+  margin-left: -22px;
+  margin-top: 1px;
+  font-size: 11px;
+}
+.series-table .col-pin { position: relative; }
+.series-table th.col-pin { color: var(--accent); }
+.series-table tbody tr { position: relative; }
+
+.series-name {
+  font-weight: 500; color: var(--txt-0);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  line-height: 1.4;
+}
+.series-name .badge {
+  display: inline-block; padding: 1px 6px; margin-left: 6px;
+  background: var(--chip-bg); color: var(--txt-2);
+  border-radius: 999px; font-size: 10px; font-weight: 500;
+  white-space: nowrap;
+}
+.series-meta {
+  font-size: 10.5px; color: var(--txt-3);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.mode-radio { display: inline-flex; gap: 2px; background: var(--bg-elev);
+  padding: 2px; border-radius: 7px; border: 1px solid var(--line); }
+.mode-radio label {
+  padding: 4px 9px; border-radius: 5px; cursor: pointer;
+  font-size: 11px; font-weight: 500; color: var(--txt-2);
+  display: inline-flex; align-items: center; gap: 4px;
+  transition: all 0.12s;
+}
+.mode-radio label:hover { color: var(--txt-0); }
+.mode-radio input { display: none; }
+.mode-radio input:checked + span { color: var(--txt-0); }
+.mode-radio label:has(input:checked) {
+  background: rgba(255,183,77,0.18); color: var(--txt-0);
+  box-shadow: inset 0 0 0 1px rgba(255,183,77,0.3);
+}
+.mode-radio label.swatch-level::before { content: ''; display: inline-block; width: 9px; height: 2px; background: #ff9933; border-radius: 1px; }
+.mode-radio label.swatch-yoy::before { content: ''; display: inline-block; width: 9px; height: 2px; background: #4ade80; border-radius: 1px; }
+.mode-radio label.swatch-mom::before { content: ''; display: inline-block; width: 9px; height: 2px; background: #4d8dff; border-radius: 1px; }
+.mode-radio label.swatch-both::before { content: ''; display: inline-block; width: 14px; height: 6px; background: linear-gradient(90deg, #ff9933 0%, #ff9933 50%, #4ade80 50%, #4ade80 100%); border-radius: 1px; }
+.mode-radio label.swatch-trend::before { content: ''; display: inline-block; width: 11px; height: 0; border-top: 2px dashed rgba(255,255,255,0.6); vertical-align: middle; }
+.mode-radio label.swatch-hide::before { content: ''; display: inline-block; width: 9px; height: 9px; background: rgba(239,68,68,0.4); border-radius: 50%; }
+
+.empty {
+  padding: 40px; text-align: center; color: var(--txt-2);
+  background: var(--bg-elev); border: 1px dashed var(--line);
+  border-radius: var(--radius);
+}
+
+.toast {
+  position: fixed; bottom: 24px; right: 24px;
+  background: var(--bg-2); border: 1px solid var(--accent);
+  color: var(--txt-0); padding: 12px 18px; border-radius: 10px;
+  font-size: 13px; box-shadow: var(--shadow-lg);
+  opacity: 0; transform: translateY(20px); transition: all 0.25s;
+  pointer-events: none;
+  z-index: 200;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+.toast.error { border-color: var(--bad); }
+
+.summary-stats { display: flex; gap: 14px; }
+.summary-stat { font-size: 12px; }
+.summary-stat strong { color: var(--accent); font-size: 14px; }
+
+.hint { font-size: 11px; color: var(--txt-3); padding: 6px 10px;
+  background: rgba(255,183,77,0.08); border-radius: 6px;
+  border-left: 3px solid var(--accent);
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<header class="top">
+  <div class="brand">
+    <div class="brand-mark">₹</div>
+    <div>
+      <h1>RBI Macro · Curation</h1>
+      <p>Pick which charts to keep and how to render them</p>
+    </div>
+  </div>
+  <div class="spacer"></div>
+  <button class="btn theme-toggle" id="themeToggle" title="Toggle light/dark mode" aria-label="Toggle theme">
+    <svg class="icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m4.93 19.07 1.41-1.41"/><path d="m17.66 6.34 1.41-1.41"/></svg>
+    <svg class="icon-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+  <button class="btn" id="openDashBtn">↗ Open Dashboard</button>
+  <button class="btn danger" id="resetBtn">Reset to default</button>
+  <button class="btn" id="exportBtn">Export JSON</button>
+  <button class="btn primary" id="saveBtn">💾 Save & rebuild</button>
+</header>
+
+<div class="hint" style="margin-bottom:14px">
+  <strong>How it works.</strong>
+  Each series has a <em>Show</em> toggle and a <em>View mode</em>:
+  <span class="mode-chip" style="margin: 0 4px"><span style="display:inline-block;width:9px;height:2px;background:#ff9933;border-radius:1px"></span>Level</span> = raw value,
+  <span class="mode-chip" style="margin: 0 4px"><span style="display:inline-block;width:9px;height:2px;background:#4ade80;border-radius:1px"></span>YoY</span> = year-over-year %,
+  <span class="mode-chip" style="margin: 0 4px"><span style="display:inline-block;width:9px;height:2px;background:#4d8dff;border-radius:1px"></span>MoM</span> = period-over-period %,
+  <span class="mode-chip" style="margin: 0 4px"><span style="display:inline-block;width:11px;border-top:2px dashed rgba(255,255,255,0.6)"></span>Trend</span> = level + regression line.
+  Use the per-theme <em>Apply to all</em> controls to bulk-set.
+  Saved changes trigger a dashboard rebuild automatically.
+</div>
+
+<div class="summary" id="summary">
+  <div class="summary-stats">
+    <div class="summary-stat"><strong id="statShow">0</strong> shown</div>
+    <div class="summary-stat"><strong id="statHide">0</strong> hidden</div>
+    <div class="summary-stat" style="color:var(--accent)">📌 <strong id="statPin">0</strong> pinned</div>
+  </div>
+  <div style="flex:1"></div>
+  <div id="breakdown"></div>
+</div>
+
+<div class="toolbar">
+  <div class="search">
+    <input id="searchInput" type="search" placeholder="Search series (e.g. repo, CPI, USD)…" />
+  </div>
+  <label class="filter-chk"><input type="checkbox" id="onlyModified" /> Only modified</label>
+  <label class="filter-chk"><input type="checkbox" id="onlyPinned" /> <span style="color:var(--accent)">📌 Only pinned</span></label>
+  <label class="filter-chk"><input type="checkbox" id="onlyHidden" /> Only hidden</label>
+  <label class="filter-chk"><input type="checkbox" id="expandAll" checked /> Expand all</label>
+</div>
+
+<div class="curate-help">
+  <strong>📌 Pin to Latest Reads:</strong> check the <strong>Pin</strong> box on any series to add it to the dashboard's "Latest Reads" strip at the top of the main page. <strong>Show</strong> controls whether the chart appears in the grid. Use the <strong>View mode</strong> radio to switch the chart between Level / YoY % / MoM % / Both / Trend.
+  When you're done, click <strong>💾 Save curation</strong> at the bottom and drop the downloaded <code>curation.json</code> into <code>data/</code> + run <code>python3 scripts/apply_curation.py</code>.
+</div>
+
+<div id="themes"></div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="../data/macro_data.js"></script>
+<script src="../data/curation.js"></script>
+
+<script>
+/* ----------------------------------------------------------
+   Bootstrap data
+   ---------------------------------------------------------- */
+// macro_data.js sets window.MACRO_DATA = {...}
+// curation.js sets window.CURATION = {...}
+
+const DATA = window.MACRO_DATA;
+const THEMES = DATA.themes || [];
+
+const DEFAULT_CURATION = {
+  _meta: { updatedAt: new Date().toISOString(), note: 'Default — edit via curate.html' },
+  default: { show: true, mode: 'both' },
+  themeDefaults: {},
+  series: {},
+};
+
+let curation = window.CURATION
+  ? structuredClone(window.CURATION)
+  : structuredClone(DEFAULT_CURATION);
+
+// Per-series key: "<sheetId>::<seriesName>"
+function key(sheetId, name) { return sheetId + '::' + name; }
+
+const MODES = ['level', 'yoy', 'mom', 'both', 'trend', 'hide'];
+const MODE_LABELS = {
+  level: 'Level', yoy: 'YoY', mom: 'MoM',
+  both: 'Both', trend: 'Trend', hide: 'Hide',
+};
+const MODE_SWATCH = {
+  level: 'swatch-level', yoy: 'swatch-yoy', mom: 'swatch-mom',
+  both: 'swatch-both', trend: 'swatch-trend', hide: 'swatch-hide',
+};
+
+/* Resolve effective settings for a series, considering series > themeDefaults > default */
+function effectiveForSeries(sheetId, name, themeId) {
+  const k = key(sheetId, name);
+  if (curation.series[k]) return { ...curation.default, ...curation.series[k], _src: 'series' };
+  if (curation.themeDefaults[themeId]) return { ...curation.default, ...curation.themeDefaults[themeId], _src: 'theme' };
+  return { ...curation.default, _src: 'default' };
+}
+
+function isModified(sheetId, name, themeId) {
+  const k = key(sheetId, name);
+  if (curation.series[k]) return true;
+  return false;
+}
+
+/* ----------------------------------------------------------
+   Render theme blocks
+   ---------------------------------------------------------- */
+function renderThemes() {
+  const container = document.getElementById('themes');
+  container.innerHTML = '';
+
+  // Build map theme -> series
+  const byTheme = {};
+  DATA.sheets.forEach(sh => {
+    sh.series.forEach((ser, idx) => {
+      if (idx === 0) return; // skip period col
+      const theme = ser.theme || 'other';
+      const themeMeta = THEMES.find(t => t.id === theme) || { id: theme, label: theme, icon: '•', color: '#8693ab' };
+      if (!byTheme[theme]) byTheme[theme] = { meta: themeMeta, series: [] };
+      byTheme[theme].series.push({ sheet: sh, ser, themeId: theme });
+    });
+  });
+
+  THEMES.forEach(t => {
+    if (!byTheme[t.id]) return;
+    const block = renderThemeBlock(byTheme[t.id]);
+    container.appendChild(block);
+  });
+}
+
+function renderThemeBlock({ meta, series }) {
+  const wrap = document.createElement('div');
+  wrap.className = 'theme';
+  wrap.dataset.themeId = meta.id;
+  const expandAll = document.getElementById('expandAll').checked;
+  wrap.innerHTML = `
+    <div class="theme-head" data-toggle>
+      <span class="theme-icon" style="color:${meta.color}">${meta.icon}</span>
+      <span class="theme-title">${meta.label}</span>
+      <span class="theme-count" data-series-count>${series.length} series</span>
+      <div class="theme-actions" onclick="event.stopPropagation()">
+<span style="font-size:11px;color:var(--txt-3)">Apply to all:</span>
+        <select data-bulk-mode>
+          ${MODES.map(m => `<option value="${m}">${MODE_LABELS[m]}</option>`).join('')}
+        </select>
+        <button data-bulk-show>Show all</button>
+        <button data-bulk-hide>Hide all</button>
+        <button data-bulk-pin>📌 Pin all</button>
+        <button data-bulk-unpin>Unpin all</button>
+        <button data-bulk-reset>Reset</button>
+      </div>
+      <span style="color:var(--txt-3);font-size:14px;margin-left:8px">${expandAll ? '▾' : '▸'}</span>
+    </div>
+    <div class="theme-body" ${expandAll ? '' : 'style="display:none"'}>
+      <table class="series-table">
+        <thead><tr>
+          <th class="col-show">Show</th>
+          <th class="col-pin">Pin</th>
+          <th class="col-name">Series</th>
+          <th class="col-meta">Source · Frequency · Latest</th>
+          <th class="col-mode">View mode</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  `;
+
+  const tbody = wrap.querySelector('tbody');
+  series.forEach(({ sheet, ser, themeId }) => {
+    const eff = effectiveForSeries(sheet.id, ser.name, themeId);
+    const modified = isModified(sheet.id, ser.name, themeId);
+
+    // last value
+    let lastV = null, lastDate = null;
+    for (let i = ser.values.length - 1; i >= 0; i--) {
+      if (ser.values[i] != null) { lastV = ser.values[i]; lastDate = sheet.series[0].values[i]; break; }
+    }
+
+    const tr = document.createElement('tr');
+    tr.dataset.key = key(sheet.id, ser.name);
+    tr.dataset.search = (ser.name + ' ' + sheet.name + ' ' + themeId).toLowerCase();
+    if (modified) tr.classList.add('modified');
+    if (!eff.show) tr.classList.add('hidden');
+    if (eff.pin) tr.classList.add('pinned');
+    tr.innerHTML = `
+      <td class="col-show">
+        <input type="checkbox" data-show ${eff.show ? 'checked' : ''} />
+      </td>
+      <td class="col-pin">
+        <input type="checkbox" data-pin ${eff.pin ? 'checked' : ''} title="Pin to Latest Reads strip" />
+      </td>
+      <td class="col-name" title="${escapeHtml(ser.name)}">
+        <div class="series-name">
+          ${escapeHtml(ser.name)}
+          ${modified ? '<span class="badge" title="Modified — overrides default">overridden</span>' : ''}
+        </div>
+        <div class="series-meta">
+          ${escapeHtml(sheet.name)} · ${sheet.frequency} · ${ser.values.filter(v => v != null).length} pts
+        </div>
+      </td>
+      <td class="col-meta">
+        ${lastV != null ? `Latest: <span class="mono">${formatNumber(lastV)}</span> ${escapeHtml(ser.unit || '')}` : '—'}
+        <div>${lastDate ? `as of ${escapeHtml(lastDate)}` : ''}</div>
+      </td>
+      <td class="col-mode">
+        <div class="mode-radio">
+          ${MODES.map(m => `
+            <label class="${MODE_SWATCH[m]}">
+              <input type="radio" name="mode-${escapeId(key(sheet.id, ser.name))}" value="${m}" ${eff.mode === m ? 'checked' : ''} />
+              <span>${MODE_LABELS[m]}</span>
+            </label>
+          `).join('')}
+        </div>
+      </td>
+    `;
+    tbody.appendChild(tr);
+
+    // Wire handlers
+    tr.querySelector('[data-show]').addEventListener('change', e => {
+      setSeriesRule(sheet.id, ser.name, { show: e.target.checked });
+      updateRowState();
+      updateSummary();
+    });
+    tr.querySelector('[data-pin]').addEventListener('change', e => {
+      setSeriesRule(sheet.id, ser.name, { pin: e.target.checked });
+      updateRowState();
+      updateSummary();
+    });
+    tr.querySelectorAll('input[type="radio"]').forEach(r => {
+      r.addEventListener('change', e => {
+        if (e.target.checked) {
+          setSeriesRule(sheet.id, ser.name, { mode: e.target.value, show: e.target.value !== 'hide' });
+          updateRowState();
+          updateSummary();
+        }
+      });
+    });
+  });
+
+  // Toggle collapse
+  wrap.querySelector('[data-toggle]').addEventListener('click', () => {
+    const body = wrap.querySelector('.theme-body');
+    body.style.display = body.style.display === 'none' ? '' : 'none';
+    const arrow = wrap.querySelector('[data-toggle]').lastElementChild;
+    arrow.textContent = body.style.display === 'none' ? '▸' : '▾';
+  });
+
+  // Bulk actions
+  const bulkMode = wrap.querySelector('[data-bulk-mode]');
+  bulkMode.addEventListener('change', e => {
+    series.forEach(({ sheet, ser }) => {
+      setSeriesRule(sheet.id, ser.name, { mode: e.target.value, show: e.target.value !== 'hide' });
+    });
+    renderThemes();
+    applyFilters();
+  });
+  wrap.querySelector('[data-bulk-show]').addEventListener('click', () => {
+    series.forEach(({ sheet, ser }) => setSeriesRule(sheet.id, ser.name, { show: true }));
+    renderThemes();
+    applyFilters();
+  });
+  wrap.querySelector('[data-bulk-hide]').addEventListener('click', () => {
+    series.forEach(({ sheet, ser }) => setSeriesRule(sheet.id, ser.name, { show: false }));
+    renderThemes();
+    applyFilters();
+  });
+  wrap.querySelector('[data-bulk-pin]').addEventListener('click', () => {
+    series.forEach(({ sheet, ser }) => setSeriesRule(sheet.id, ser.name, { pin: true }));
+    renderThemes();
+    applyFilters();
+  });
+  wrap.querySelector('[data-bulk-unpin]').addEventListener('click', () => {
+    series.forEach(({ sheet, ser }) => {
+      const k = key(sheet.id, ser.name);
+      if (!curation.series[k]) return;
+      delete curation.series[k].pin;
+      if (isRuleIdentity(curation.series[k], curation.default)) {
+        delete curation.series[k];
+      }
+    });
+    renderThemes();
+    applyFilters();
+  });
+  wrap.querySelector('[data-bulk-reset]').addEventListener('click', () => {
+    series.forEach(({ sheet, ser }) => delete curation.series[key(sheet.id, ser.name)]);
+    renderThemes();
+    applyFilters();
+  });
+
+  return wrap;
+}
+
+function isRuleIdentity(rule, def) {
+  // True if rule matches default on every field that matters (so we can delete it)
+  if ((rule.show ?? def.show) !== def.show) return false;
+  if ((rule.mode ?? def.mode) !== def.mode) return false;
+  if ((rule.pin ?? false) !== (def.pin ?? false)) return false;
+  return true;
+}
+
+function setSeriesRule(sheetId, name, patch) {
+  const k = key(sheetId, name);
+  const merged = { ...curation.default, ...curation.series[k], ...patch };
+  if (isRuleIdentity(merged, curation.default)) {
+    delete curation.series[k];
+  } else {
+    curation.series[k] = { ...curation.series[k], ...patch };
+  }
+}
+
+function updateRowState() {
+  document.querySelectorAll('tr[data-key]').forEach(tr => {
+    const k = tr.dataset.key;
+    const [sheetId, ...nameParts] = k.split('::');
+    const name = nameParts.join('::');
+    const ser = findSer(sheetId, name);
+    if (!ser) return;
+    const eff = effectiveForSeries(sheetId, name, ser.theme);
+    tr.classList.toggle('hidden', !eff.show);
+    tr.classList.toggle('pinned', !!eff.pin);
+    tr.classList.toggle('modified', !!curation.series[k]);
+    // Update badge
+    const badge = tr.querySelector('.series-name .badge');
+    if (curation.series[k] && !badge) {
+      const b = document.createElement('span');
+      b.className = 'badge';
+      b.title = 'Modified — overrides default';
+      b.textContent = 'overridden';
+      tr.querySelector('.series-name').appendChild(b);
+    } else if (!curation.series[k] && badge) {
+      badge.remove();
+    }
+  });
+}
+
+function findSer(sheetId, name) {
+  for (const sh of DATA.sheets) {
+    if (sh.id !== sheetId) continue;
+    const s = sh.series.find(s => s.name === name);
+    if (s) return { ...s, _sheet: sh };
+  }
+  return null;
+}
+
+function applyFilters() {
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  const onlyMod = document.getElementById('onlyModified').checked;
+  const onlyPinned = document.getElementById('onlyPinned').checked;
+  const onlyHide = document.getElementById('onlyHidden').checked;
+  document.querySelectorAll('tr[data-key]').forEach(tr => {
+    let ok = true;
+    if (q && !tr.dataset.search.includes(q)) ok = false;
+    if (onlyMod && !tr.classList.contains('modified')) ok = false;
+    if (onlyPinned && !tr.classList.contains('pinned')) ok = false;
+    if (onlyHide && !tr.classList.contains('hidden')) ok = false;
+    tr.style.display = ok ? '' : 'none';
+  });
+  updateSummary();
+}
+
+function updateSummary() {
+  let shown = 0, hidden = 0, pinned = 0;
+  const byMode = { level: 0, yoy: 0, mom: 0, both: 0, trend: 0, hide: 0 };
+  DATA.sheets.forEach(sh => {
+    sh.series.forEach((ser, idx) => {
+      if (idx === 0) return;
+      const eff = effectiveForSeries(sh.id, ser.name, ser.theme || 'other');
+      if (eff.show) shown++; else hidden++;
+      if (eff.pin) pinned++;
+      const m = eff.mode || 'both';
+      byMode[m] = (byMode[m] || 0) + 1;
+    });
+  });
+  document.getElementById('statShow').textContent = shown;
+  document.getElementById('statHide').textContent = hidden;
+  document.getElementById('statPin').textContent = pinned;
+  document.getElementById('breakdown').innerHTML = Object.entries(byMode)
+    .filter(([m, n]) => n > 0)
+    .map(([m, n]) => `<span class="mode-chip ${m === 'hide' ? 'hide' : ''}">${n} ${MODE_LABELS[m]}</span>`)
+    .join(' ');
+}
+
+/* ----------------------------------------------------------
+   Save / Load
+   ---------------------------------------------------------- */
+async function save() {
+  curation._meta.updatedAt = new Date().toISOString();
+  // Try to write via a tiny fetch trick: POST to the local Python helper
+  // (since file:// can't write). The dashboard is opened from file://, so
+  // we generate the file contents and let the user save manually OR we
+  // POST to a tiny local endpoint.
+  try {
+    const res = await fetch('../data/curation.json', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(curation, null, 2),
+    });
+    if (res.ok) {
+      toast('Saved & dashboard rebuilt', 'ok');
+      return;
+    }
+  } catch (e) {
+    // Probably opened from file:// or no PUT handler — fall through
+  }
+  // Fallback: download the file via <a download>
+  const blob = new Blob([JSON.stringify(curation, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'curation.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('Downloaded curation.json — drop it into data/ and rebuild', 'ok');
+}
+
+function reset() {
+  if (!confirm('Reset all rules? This clears every override.')) return;
+  curation = structuredClone(DEFAULT_CURATION);
+  curation._meta.updatedAt = new Date().toISOString();
+  renderThemes();
+  applyFilters();
+  toast('Reset to defaults', 'ok');
+}
+
+function exportJson() {
+  const blob = new Blob([JSON.stringify(curation, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'curation.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function toast(msg, type = 'ok') {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.toggle('error', type === 'error');
+  el.classList.add('show');
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => el.classList.remove('show'), 3500);
+}
+
+function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])); }
+function escapeId(s) { return s.replace(/[^a-zA-Z0-9_-]/g, '_'); }
+function formatNumber(v) {
+  if (typeof v !== 'number' || !isFinite(v)) return '—';
+  return v.toLocaleString('en-IN', { maximumFractionDigits: 4 });
+}
+
+/* ----------------------------------------------------------
+   Theme toggle (light / dark)
+   ---------------------------------------------------------- */
+const THEME_KEY = 'imd-theme';
+function getStoredTheme() {
+  try { return localStorage.getItem(THEME_KEY); } catch (_) { return null; }
+}
+function applyTheme(t) {
+  const theme = (t === 'light') ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', theme);
+  try { localStorage.setItem(THEME_KEY, theme); } catch (_) {}
+}
+(function initTheme() {
+  let stored = getStoredTheme();
+  if (!stored) {
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    stored = prefersLight ? 'light' : 'dark';
+  }
+  applyTheme(stored);
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  });
+})();
+
+/* ----------------------------------------------------------
+   Wire
+   ---------------------------------------------------------- */
+document.getElementById('searchInput').addEventListener('input', applyFilters);
+document.getElementById('onlyModified').addEventListener('change', applyFilters);
+document.getElementById('onlyPinned').addEventListener('change', applyFilters);
+document.getElementById('onlyHidden').addEventListener('change', applyFilters);
+document.getElementById('expandAll').addEventListener('change', renderThemes);
+document.getElementById('saveBtn').addEventListener('click', save);
+document.getElementById('resetBtn').addEventListener('click', reset);
+document.getElementById('exportBtn').addEventListener('click', exportJson);
+document.getElementById('openDashBtn').addEventListener('click', () => {
+  window.open('index.html', '_blank');
+});
+
+renderThemes();
+applyFilters();
+</script>
+</body>
+</html>

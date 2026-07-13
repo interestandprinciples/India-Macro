@@ -1,0 +1,34 @@
+{
+  "name": "india-macroeconomic-dashboard",
+  "version": "1.0.0",
+  "description": "Self-contained interactive dashboard for Indian macroeconomic indicators, auto-refreshed daily from public sources (DBIE, RBI, PPAC, MoSPI, World Bank, Yahoo Finance).",
+  "private": true,
+  "main": "dashboard/index.html",
+  "scripts": {
+    "build": "python3 scripts/build_dashboard.py",
+    "build:no-extract": "python3 scripts/build_dashboard.py --no-extract",
+    "refresh": "bash scripts/refresh_all.sh",
+    "extract": "python3 scripts/extract_data.py",
+    "fetch:dbie": "python3 scripts/fetch_and_update.py",
+    "fetch:ref": "python3 scripts/fetch_reference_rates.py",
+    "fetch:crude": "python3 scripts/fetch_crude_oil.py",
+    "fetch:mospi": "python3 scripts/fetch_mospi_wb.py",
+    "fetch:live": "python3 scripts/fetch_live.py",
+    "apply-curation": "python3 scripts/apply_curation.py",
+    "test:mobile": "python3 -c \"import playwright; print('ok')\"",
+    "open": "open dashboard/index.html"
+  },
+  "keywords": [
+    "india",
+    "macro",
+    "dashboard",
+    "rbi",
+    "inflation",
+    "gdp",
+    "currency"
+  ],
+  "engines": {
+    "python": ">=3.10"
+  },
+  "license": "MIT"
+}

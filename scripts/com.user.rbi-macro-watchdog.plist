@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.user.rbi-macro-watchdog</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>-c</string>
+        <string>launchctl print gui/$(id -u)/com.user.rbi-macro-live 2>/dev/null | grep -q 'state = running\|state = spawn scheduled' || launchctl bootstrap gui/$(id -u) "$HOME/Library/LaunchAgents/com.user.rbi-macro-live.plist"</string>
+    </array>
+    <key>StartInterval</key>
+    <integer>300</integer>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/Users/niravshah/Desktop/RBI Macro Indicators/data/launchd.watchdog.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/niravshah/Desktop/RBI Macro Indicators/data/launchd.watchdog.err.log</string>
+</dict>
+</plist>

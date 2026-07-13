@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.user.rbi-macro-crude</string>
+
+    <!-- Daily fetch of the PPAC Indian-basket crude oil price
+         + Brent historical trend. Runs at 17:00 IST (after PPAC publishes
+         the daily price around 16:30 IST) so the dashboard reflects the
+         same day. -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/tmp/rbi_crude.sh</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/niravshah/Desktop/RBI Macro Indicators</string>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>17</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <key>RunAtLoad</key>
+    <false/>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin</string>
+        <key>LANG</key>
+        <string>en_IN.UTF-8</string>
+    </dict>
+</dict>
+</plist>

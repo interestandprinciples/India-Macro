@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "updatedAt": "2026-07-03T00:00:00Z",
+    "note": "Pick which live tickers to show on the dashboard. Remove the ones you don't care about, or add new ones. Each ticker has a server-side fetcher (live forex feed, market feed). To add a new ticker you'll also need to add a fetcher in scripts/fetch_live.py — see fetchLive() in that file."
+  },
+  "tickers": [
+    {
+      "id": "usdinr",
+      "label": "USD / INR",
+      "invertDelta": true,
+      "fetch": "forex-feed"
+    },
+    {
+      "id": "nifty",
+      "label": "NIFTY 50",
+      "fetch": "nse"
+    },
+    {
+      "id": "bank",
+      "label": "NIFTY Bank",
+      "fetch": "nse"
+    },
+    {
+      "id": "vix",
+      "label": "India VIX",
+      "invertDelta": true,
+      "fetch": "nse"
+    },
+    {
+      "id": "us10y",
+      "label": "US 10Y Yield",
+      "invertDelta": true,
+      "fetch": "yfinance:^TNX"
+    }
+  ]
+}

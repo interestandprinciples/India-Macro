@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.user.rbi-macro-ref</string>
+
+    <!--
+      Daily fetch of the RBI Reference Rate Archive
+      (USD, GBP, EUR, JPY, AED, IDR) at 14:30 IST — right after the
+      RBI publishes the day's reference rate at 13:30 IST.
+    -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/tmp/rbi_ref.sh</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/niravshah/Desktop/RBI Macro Indicators</string>
+
+    <!-- 14:30 IST = 09:30 UTC; launchd uses local time on macOS -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>14</integer>
+        <key>Minute</key>
+        <integer>30</integer>
+    </dict>
+
+    <!-- If the machine was asleep at 14:30, run as soon as it wakes -->
+    <key>RunAtLoad</key>
+    <false/>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin</string>
+        <key>LANG</key>
+        <string>en_IN.UTF-8</string>
+    </dict>
+</dict>
+</plist>

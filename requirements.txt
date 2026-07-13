@@ -1,0 +1,18 @@
+# India Macroeconomic Dashboard — Python dependencies
+# Install with: pip install -r requirements.txt
+
+# Core data handling
+pypdf>=4.0.0          # parse MoSPI press-release PDFs
+openpyxl>=3.1.0       # parse the DBIE .xlsx workbooks
+certifi               # SSL certificate bundle (for HTTPS calls)
+
+# Live market data
+yfinance>=0.2.40      # USD/INR, NIFTY 50, US 10Y, Gold, Brent
+requests>=2.31.0      # HTTP client for MoSPI/RBI endpoints
+
+# Indian government data portals (PPAC web scraping)
+playwright>=1.40      # headless browser for PPAC crude oil page
+# Install browsers: python -m playwright install chromium
+
+# Optional: pretty logging
+# rich

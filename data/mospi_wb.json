@@ -1,0 +1,447 @@
+{
+  "generatedAt": "2026-07-13T18:55:38Z",
+  "source": "World Bank Open Data (api.worldbank.org) + MoSPI press releases (mospi.gov.in)",
+  "indicators_meta": [
+    {
+      "code": "NY.GDP.PCAP.CD",
+      "key": "gdp_per_capita",
+      "unit": "USD",
+      "label": "GDP per capita (current US$)"
+    },
+    {
+      "code": "NY.GDP.MKTP.KD.ZG",
+      "key": "gdp_growth",
+      "unit": "%",
+      "label": "Real GDP growth (annual %)"
+    },
+    {
+      "code": "NV.IND.MANF.ZS",
+      "key": "industry_share",
+      "unit": "%",
+      "label": "Manufacturing & industry value-added (% of GDP)"
+    },
+    {
+      "code": "SL.UEM.TOTL.NE.ZS",
+      "key": "unemployment",
+      "unit": "%",
+      "label": "Unemployment rate (% of labor force, ILO modeled)"
+    },
+    {
+      "key": "iip_monthly",
+      "unit": "% YoY",
+      "label": "IIP monthly growth (MoSPI press release)"
+    },
+    {
+      "key": "plfs_monthly_ur",
+      "unit": "%",
+      "label": "PLFS monthly unemployment rate (MoSPI)"
+    },
+    {
+      "key": "plfs_monthly_lfpr",
+      "unit": "%",
+      "label": "PLFS monthly labour force participation rate (MoSPI)"
+    },
+    {
+      "key": "gdp_quarterly",
+      "unit": "%",
+      "label": "GDP quarterly growth (MoSPI press release)"
+    }
+  ],
+  "series": {
+    "gdp_per_capita": [
+      {
+        "year": 2000,
+        "value": 442.750218937263
+      },
+      {
+        "year": 2001,
+        "value": 450.357900514128
+      },
+      {
+        "year": 2002,
+        "value": 469.149928973927
+      },
+      {
+        "year": 2003,
+        "value": 544.143133545002
+      },
+      {
+        "year": 2004,
+        "value": 624.258826510066
+      },
+      {
+        "year": 2005,
+        "value": 710.488080408949
+      },
+      {
+        "year": 2006,
+        "value": 801.668353659022
+      },
+      {
+        "year": 2007,
+        "value": 1021.88707706826
+      },
+      {
+        "year": 2008,
+        "value": 992.519584923828
+      },
+      {
+        "year": 2009,
+        "value": 1094.94974598436
+      },
+      {
+        "year": 2010,
+        "value": 1347.51939071367
+      },
+      {
+        "year": 2011,
+        "value": 1445.46127486037
+      },
+      {
+        "year": 2012,
+        "value": 1429.32199520032
+      },
+      {
+        "year": 2013,
+        "value": 1432.84397512195
+      },
+      {
+        "year": 2014,
+        "value": 1553.88396075118
+      },
+      {
+        "year": 2015,
+        "value": 1583.99815907985
+      },
+      {
+        "year": 2016,
+        "value": 1707.50892912243
+      },
+      {
+        "year": 2017,
+        "value": 1950.10468280866
+      },
+      {
+        "year": 2018,
+        "value": 1966.25455171679
+      },
+      {
+        "year": 2019,
+        "value": 2041.42863698585
+      },
+      {
+        "year": 2020,
+        "value": 1907.04251637669
+      },
+      {
+        "year": 2021,
+        "value": 2239.61384367482
+      },
+      {
+        "year": 2022,
+        "value": 2279.98145719369
+      },
+      {
+        "year": 2023,
+        "value": 2434.44826340989
+      },
+      {
+        "year": 2024,
+        "value": 2591.9916607122
+      },
+      {
+        "year": 2025,
+        "value": 2702.47987141553
+      }
+    ],
+    "gdp_growth": [
+      {
+        "year": 2000,
+        "value": 3.84099115686554
+      },
+      {
+        "year": 2001,
+        "value": 4.82396626397303
+      },
+      {
+        "year": 2002,
+        "value": 3.80397532120038
+      },
+      {
+        "year": 2003,
+        "value": 7.86038147545045
+      },
+      {
+        "year": 2004,
+        "value": 7.92293661307978
+      },
+      {
+        "year": 2005,
+        "value": 7.92343062131789
+      },
+      {
+        "year": 2006,
+        "value": 8.06073257305057
+      },
+      {
+        "year": 2007,
+        "value": 7.66081506510766
+      },
+      {
+        "year": 2008,
+        "value": 3.08669805950082
+      },
+      {
+        "year": 2009,
+        "value": 7.8618888330338
+      },
+      {
+        "year": 2010,
+        "value": 8.49758470165625
+      },
+      {
+        "year": 2011,
+        "value": 5.24131620024293
+      },
+      {
+        "year": 2012,
+        "value": 5.45638755164772
+      },
+      {
+        "year": 2013,
+        "value": 6.38610640091713
+      },
+      {
+        "year": 2014,
+        "value": 7.41022760516977
+      },
+      {
+        "year": 2015,
+        "value": 7.99625378567987
+      },
+      {
+        "year": 2016,
+        "value": 8.25630550176662
+      },
+      {
+        "year": 2017,
+        "value": 6.79538341902422
+      },
+      {
+        "year": 2018,
+        "value": 6.45385134495295
+      },
+      {
+        "year": 2019,
+        "value": 3.87143694070524
+      },
+      {
+        "year": 2020,
+        "value": -5.77772470687303
+      },
+      {
+        "year": 2021,
+        "value": 9.68959249191741
+      },
+      {
+        "year": 2022,
+        "value": 7.6093649776932
+      },
+      {
+        "year": 2023,
+        "value": 7.210224629335
+      },
+      {
+        "year": 2024,
+        "value": 7.09927893176518
+      },
+      {
+        "year": 2025,
+        "value": 7.56666179284244
+      }
+    ],
+    "industry_share": [
+      {
+        "year": 2000,
+        "value": 15.9270230184323
+      },
+      {
+        "year": 2001,
+        "value": 15.3070212831531
+      },
+      {
+        "year": 2002,
+        "value": 15.5587017262956
+      },
+      {
+        "year": 2003,
+        "value": 15.587386648646
+      },
+      {
+        "year": 2004,
+        "value": 15.8272457405027
+      },
+      {
+        "year": 2005,
+        "value": 15.9730170446131
+      },
+      {
+        "year": 2006,
+        "value": 17.3036533311925
+      },
+      {
+        "year": 2007,
+        "value": 16.8645677754068
+      },
+      {
+        "year": 2008,
+        "value": 17.0986741489578
+      },
+      {
+        "year": 2009,
+        "value": 17.1435776672846
+      },
+      {
+        "year": 2010,
+        "value": 17.0299342498624
+      },
+      {
+        "year": 2011,
+        "value": 16.1393374446289
+      },
+      {
+        "year": 2012,
+        "value": 15.8169230071066
+      },
+      {
+        "year": 2013,
+        "value": 15.253022692586
+      },
+      {
+        "year": 2014,
+        "value": 15.0655701107589
+      },
+      {
+        "year": 2015,
+        "value": 15.5838545863713
+      },
+      {
+        "year": 2016,
+        "value": 15.1622371332529
+      },
+      {
+        "year": 2017,
+        "value": 15.0182387501718
+      },
+      {
+        "year": 2018,
+        "value": 14.8815306673017
+      },
+      {
+        "year": 2019,
+        "value": 13.4558075633394
+      },
+      {
+        "year": 2020,
+        "value": 14.1204853576923
+      },
+      {
+        "year": 2021,
+        "value": 14.3770288531286
+      },
+      {
+        "year": 2022,
+        "value": 13.3327202623974
+      },
+      {
+        "year": 2023,
+        "value": 13.312843875072
+      },
+      {
+        "year": 2024,
+        "value": 13.1392199491326
+      },
+      {
+        "year": 2025,
+        "value": 13.4710550684648
+      }
+    ],
+    "unemployment": [
+      {
+        "year": 2000,
+        "value": 2.731
+      },
+      {
+        "year": 2005,
+        "value": 3.804
+      },
+      {
+        "year": 2010,
+        "value": 3.115
+      },
+      {
+        "year": 2012,
+        "value": 3.222
+      },
+      {
+        "year": 2018,
+        "value": 7.652
+      },
+      {
+        "year": 2019,
+        "value": 6.51
+      },
+      {
+        "year": 2020,
+        "value": 7.859
+      },
+      {
+        "year": 2021,
+        "value": 6.38
+      },
+      {
+        "year": 2022,
+        "value": 4.822
+      },
+      {
+        "year": 2023,
+        "value": 4.172
+      },
+      {
+        "year": 2024,
+        "value": 4.173
+      },
+      {
+        "year": 2025,
+        "value": 4.506
+      }
+    ],
+    "plfs_monthly_ur": [
+      {
+        "period": "May 2026",
+        "value": 5.5,
+        "source": "MoSPI PLFS Monthly Bulletin, May 2026"
+      }
+    ],
+    "plfs_monthly_lfpr": [
+      {
+        "period": "May 2026",
+        "value": 54.4,
+        "source": "MoSPI PLFS Monthly Bulletin, May 2026"
+      }
+    ],
+    "iip_monthly": [
+      {
+        "period": "May 2026",
+        "value_yoy_pct": 5.1
+      }
+    ],
+    "gdp_quarterly": [
+      {
+        "period": "Q4 FY 2025-26",
+        "value": 7.7,
+        "source": "MoSPI Provisional Estimates, FY 2025-26"
+      }
+    ]
+  }
+}

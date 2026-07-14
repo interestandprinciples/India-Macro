@@ -8,9 +8,8 @@ on:
     - cron: "15 10 * * 1-5"
   workflow_dispatch:        # manual trigger from the Actions tab
   push:
-    paths:
-      - "scripts/**"
-      - ".github/workflows/daily-refresh.yml"
+    branches:
+      - main                # any push to main deploys a new build
 
 concurrency:
   group: dashboard-refresh
@@ -27,7 +26,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
         uses: actions/setup-python@v5

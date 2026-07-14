@@ -1,0 +1,41 @@
+name: Deploy
+
+# Fast deploy that just rebuilds from current files and deploys.
+# Use this when you only change dashboard/, curate.html, or other UI files
+# and don't need to refetch data.
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Stage files
+        run: |
+          mkdir -p public
+          cp -r dashboard public/dashboard
+          cp -r data public/data
+          cp dashboard/index.html public/index.html
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages

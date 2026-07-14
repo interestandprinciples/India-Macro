@@ -1,0 +1,81 @@
+name: Live Tickers
+
+# Refreshes just the live market tickers (USD/INR, NIFTY, NIFTY Bank, VIX,
+# US 10Y, Gold, Brent) and redeploys the dashboard. Runs every 15 minutes so
+# the public site always shows near-real-time data.
+#
+# Cost: ~30 sec per run × 96 runs/day = 48 min/day on GitHub Actions.
+# Free for public repos; private repos get 2,000 min/month.
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"   # every 15 minutes
+  workflow_dispatch:           # manual trigger from the Actions tab
+
+# Prevent overlapping runs if a previous run is still in progress
+concurrency:
+  group: live-tickers
+  cancel-in-progress: true
+
+jobs:
+  refresh-live:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install yfinance requests certifi
+
+      - name: Fetch live tickers
+        id: fetch
+        run: |
+          python scripts/fetch_live.py 2>&1 | tee fetch_log.txt
+          echo "fetched_at=$(date -u +%FT%TZ)" >> $GITHUB_OUTPUT
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      - name: Rebuild dashboard (no re-extract from Excel)
+        run: python scripts/build_dashboard.py --no-extract
+
+      - name: Stage site
+        run: |
+          mkdir -p public
+          cp -r dashboard public/dashboard
+          cp -r data public/data
+          cp dashboard/index.html public/index.html
+          # Optional: commit the live data back to the repo too
+          cd ..
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add data/live_rates.json data/live_rates.js || true
+          git commit -m "chore: refresh live tickers $(date -u +%FT%TZ)" || echo "no changes"
+          git push || echo "skip push"
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages

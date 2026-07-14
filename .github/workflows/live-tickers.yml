@@ -58,13 +58,10 @@ jobs:
           cp -r dashboard public/dashboard
           cp -r data public/data
           cp dashboard/index.html public/index.html
-          # Optional: commit the live data back to the repo too
-          cd ..
-          git config user.email "actions@github.com"
-          git config user.name "GitHub Actions"
-          git add data/live_rates.json data/live_rates.js || true
-          git commit -m "chore: refresh live tickers $(date -u +%FT%TZ)" || echo "no changes"
-          git push || echo "skip push"
+          # Live data is baked into dashboard/index.html at build time,
+          # so the deployed page is fresh on every run. We don't need to
+          # commit the data files back to the repo — the daily 3:45 PM
+          # refresh will pick them up next time it runs.
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

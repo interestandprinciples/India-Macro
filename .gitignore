@@ -1,0 +1,62 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+env/
+.python-version
+
+# Node (for any tooling)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Logs
+*.log
+data/fetch.log
+data/launchd.*.log
+data/live.*.log
+/data/*.err.log
+/data/*.out.log
+/tmp/launchd.*.log
+/tmp/rbi_*.sh
+
+# OS / IDE
+Thumbs.db
+*.swp
+.history/
+
+# Data — only checked-in snapshot data
+# Latest DBIE xlsx files (download via scripts; no need to commit)
+*.xlsx
+!data/.gitkeep
+
+# OS caches
+.idea/
+.vscode/
+*.iml
+
+# Backup / generated
+*.bak
+*.tmp
+.DS_Store

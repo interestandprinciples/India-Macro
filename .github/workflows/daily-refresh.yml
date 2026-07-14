@@ -1,0 +1,74 @@
+name: Daily Refresh
+
+# Refreshes all data sources and rebuilds the dashboard.
+# 10:15 UTC = 15:45 IST (India Standard Time, UTC+5:30)
+# On Mon–Fri (Indian market days).
+on:
+  schedule:
+    - cron: "15 10 * * 1-5"
+  workflow_dispatch:        # manual trigger from the Actions tab
+  push:
+    paths:
+      - "scripts/**"
+      - ".github/workflows/daily-refresh.yml"
+
+concurrency:
+  group: dashboard-refresh
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pypdf openpyxl yfinance requests certifi
+
+      - name: Install Playwright Chromium (for PPAC fetcher)
+        run: |
+          pip install playwright
+          python -m playwright install chromium
+
+      - name: Fetch + rebuild
+        run: |
+          bash scripts/refresh_all.sh
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      - name: Stage data files for Pages
+        run: |
+          mkdir -p public
+          cp -r dashboard public/dashboard
+          cp -r data public/data
+          # Keep a copy of the latest build outside the data folder too
+          cp dashboard/index.html public/index.html
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages

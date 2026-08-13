@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T18:55:38Z",
+  "generatedAt": "2026-08-13T16:32:11Z",
   "source": "World Bank Open Data (api.worldbank.org) + MoSPI press releases (mospi.gov.in)",
   "indicators_meta": [
     {
@@ -425,15 +425,16 @@
     ],
     "plfs_monthly_lfpr": [
       {
-        "period": "May 2026",
-        "value": 54.4,
-        "source": "MoSPI PLFS Monthly Bulletin, May 2026"
+        "period": "",
+        "value": 5.0
       }
     ],
     "iip_monthly": [
       {
         "period": "May 2026",
-        "value_yoy_pct": 5.1
+        "value_yoy_pct": 5.1,
+        "value_index": 122.7,
+        "source": "MoSPI IIP Press Release, 29-Jun-2026"
       }
     ],
     "gdp_quarterly": [

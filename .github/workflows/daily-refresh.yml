@@ -58,6 +58,24 @@ jobs:
           # Keep a copy of the latest build outside the data folder too
           cp dashboard/index.html public/index.html
 
+      - name: Commit refreshed data back to repo
+        # IMPORTANT: this is what makes the deploy robust. If today's fetch
+        # succeeds, the freshest data gets committed; if it fails, the deploy
+        # at least ships the last-known-good state. Without this, a single
+        # failed fetch silently regresses the live site to whatever stale
+        # data is checked into the repo.
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add data/ || true
+          # Only commit if there are actual changes
+          if git diff --cached --quiet; then
+            echo "No data changes to commit"
+          else
+            git commit -m "chore: refresh data $(date -u +%FT%TZ)"
+            git push
+          fi
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

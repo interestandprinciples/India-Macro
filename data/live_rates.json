@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-18T06:37:21.514777Z",
+  "generatedAt": "2026-08-18T10:47:31.121464Z",
   "rates": {
     "usdinr": {
-      "price": 95.67500305175781,
+      "price": 95.66999816894531,
       "prevClose": 95.45030212402344,
       "time": null,
       "state": "live",
@@ -10,7 +10,7 @@
       "source": "Yahoo Finance USDINR=X (live forex)"
     },
     "nifty": {
-      "price": 24217.1,
+      "price": 24154.9,
       "prevClose": 24287.65,
       "time": null,
       "state": "live",
@@ -18,7 +18,7 @@
       "source": "NSE India"
     },
     "bank": {
-      "price": 57381.1,
+      "price": 57262.4,
       "prevClose": 57497.8,
       "time": null,
       "state": "live",
@@ -26,7 +26,7 @@
       "source": "NSE India"
     },
     "vix": {
-      "price": 11.63,
+      "price": 11.39,
       "prevClose": 11.33,
       "time": null,
       "state": "live",
@@ -42,7 +42,7 @@
       "source": "Yahoo Finance (via yfinance)"
     },
     "gold": {
-      "price": 4454.10009765625,
+      "price": 4451.7998046875,
       "prevClose": 4417.7998046875,
       "time": 1787025600000,
       "state": "live",
@@ -50,7 +50,7 @@
       "source": "Yahoo Finance (via yfinance)"
     },
     "brent": {
-      "price": 91.70999908447266,
+      "price": 90.77999877929688,
       "prevClose": 90.87000274658203,
       "time": 1787025600000,
       "state": "live",

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T10:47:28Z",
+  "generatedAt": "2026-08-20T10:49:26Z",
   "source": "World Bank Open Data (api.worldbank.org) + MoSPI press releases (mospi.gov.in)",
   "indicators_meta": [
     {
@@ -425,9 +425,8 @@
     ],
     "plfs_monthly_lfpr": [
       {
-        "period": "May 2026",
-        "value": 54.4,
-        "source": "MoSPI PLFS Monthly Bulletin, May 2026"
+        "period": "",
+        "value": 5.0
       }
     ],
     "iip_monthly": [

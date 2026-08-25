@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T10:52:05.846218Z",
+  "generatedAt": "2026-08-25T12:15:38.222817Z",
   "rates": {
     "usdinr": {
       "price": 95.41000366210938,
@@ -42,7 +42,7 @@
       "source": "Yahoo Finance (via yfinance)"
     },
     "gold": {
-      "price": 4694.7998046875,
+      "price": 4693.0,
       "prevClose": 4640.7998046875,
       "time": 1787630400000,
       "state": "live",
@@ -50,7 +50,7 @@
       "source": "Yahoo Finance (via yfinance)"
     },
     "brent": {
-      "price": 87.93000030517578,
+      "price": 87.63999938964844,
       "prevClose": 92.16999816894531,
       "time": 1787630400000,
       "state": "live",

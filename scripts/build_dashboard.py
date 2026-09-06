@@ -62,6 +62,7 @@ def build_js_wrappers():
         ("reference_rates.json", "reference_rates.js", "REF_RATES"),
         ("crude_oil.json", "crude_oil.js", "CRUDE_OIL"),
         ("mospi_wb.json",  "mospi_wb.js",   "MOSPI_WB"),
+        ("wss_fx_reserves.json", "wss_fx_reserves.js", "WSS_FX"),
     ]:
         src = DATA_DIR / json_name
         dst = DATA_DIR / js_name
@@ -240,6 +241,31 @@ def embed_data(embed: bool):
                 bootstrap = "/* go */\nload();"
                 if bootstrap in new:
                     new = new.replace(bootstrap, crude_block + "\n\n" + bootstrap, 1)
+
+        # Embed WSS FX Reserves breakdown (RBI Weekly Statistical Supplement)
+        wss_out = BASE_DIR / "data" / "wss_fx_reserves.json"
+        wss_start = "/* === EMBED:WSS_FX === */"
+        wss_end   = "/* === /EMBED:WSS_FX === */"
+        if wss_out.exists():
+            wss_text = wss_out.read_text(encoding="utf-8").strip()
+            wss_block = f'{wss_start}\nwindow.WSS_FX = {wss_text};\n{wss_end}'
+        else:
+            wss_block = f'{wss_start}\nwindow.WSS_FX = null;\n{wss_end}'
+
+        if wss_start in new and wss_end in new:
+            before, _, rest = new.partition(wss_start)
+            _, _, after = rest.partition(wss_end)
+            new = before + wss_block + after
+        else:
+            # First time — insert just before the crude block
+            if crude_start in new:
+                new = new.replace(crude_start, wss_block + "\n\n" + crude_start, 1)
+            elif REF_ANCHOR_START in new:
+                new = new.replace(REF_ANCHOR_START, wss_block + "\n\n" + REF_ANCHOR_START, 1)
+            else:
+                bootstrap = "/* go */\nload();"
+                if bootstrap in new:
+                    new = new.replace(bootstrap, wss_block + "\n\n" + bootstrap, 1)
 
         HTML_OUT.write_text(new, encoding="utf-8")
         print(f"Wrote {HTML_OUT}  (with embedded JSON, {len(html.encode('utf-8')):,} → {len(new.encode('utf-8')):,} bytes)")

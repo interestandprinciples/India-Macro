@@ -2,12 +2,13 @@
 # Refresh the entire dashboard from all configured data sources and rebuild.
 #
 # Sources refreshed in this order:
-#   1) DBIE (RBI macro indicators)         — fetch_and_update.py
-#   2) RBI Reference Rate Archive           — fetch_reference_rates.py
-#   3) PPAC Indian-basket crude oil         — fetch_crude_oil.py
-#   4) World Bank / MoSPI-harmonized        — fetch_mospi_wb.py
-#   5) Live market tickers (USD/INR, NIFTY) — fetch_live.py
-#   6) Rebuild dashboard HTML                — build_dashboard.py --no-extract
+#   1) DBIE (RBI macro indicators)            — fetch_and_update.py
+#   2) RBI Reference Rate Archive             — fetch_reference_rates.py
+#   3) PPAC Indian-basket crude oil           — fetch_crude_oil.py
+#   4) World Bank / MoSPI-harmonized          — fetch_mospi_wb.py
+#   5) WSS Table 2 (FX Reserves breakdown)    — fetch_wss_fx.py
+#   6) Live market tickers (USD/INR, NIFTY)   — fetch_live.py
+#   7) Rebuild dashboard HTML                 — build_dashboard.py --no-extract
 #
 # Usage:  bash scripts/refresh_all.sh
 #
@@ -41,11 +42,12 @@ run_step() {
   fi
 }
 
-run_step "DBIE"            "fetch_and_update.py"
+run_step "DBIE"              "fetch_and_update.py"
 run_step "RBI Reference Rates" "fetch_reference_rates.py"
-run_step "PPAC Crude Oil"  "fetch_crude_oil.py"
+run_step "PPAC Crude Oil"    "fetch_crude_oil.py"
 run_step "MoSPI / World Bank" "fetch_mospi_wb.py"
-run_step "Live tickers"    "fetch_live.py"
+run_step "WSS FX Reserves"   "fetch_wss_fx.py"
+run_step "Live tickers"      "fetch_live.py"
 
 log "=== Rebuilding dashboard ==="
 if python3 "$HERE/build_dashboard.py" --no-extract 2>&1; then

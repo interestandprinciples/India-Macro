@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-09-06T10:18:14.808111Z",
+  "generatedAt": "2026-09-07T12:54:45.416715Z",
   "rates": {
     "usdinr": {
-      "price": 94.48999786376953,
+      "price": 94.4749984741211,
       "prevClose": 94.49490356445312,
       "time": null,
       "state": "live",
@@ -10,24 +10,24 @@
       "source": "Yahoo Finance USDINR=X (live forex)"
     },
     "nifty": {
-      "price": 23897.7,
-      "prevClose": 23873.45,
+      "price": 23779.15,
+      "prevClose": 23897.7,
       "time": null,
       "state": "live",
       "name": "NIFTY 50",
       "source": "NSE India"
     },
     "bank": {
-      "price": 57369.65,
-      "prevClose": 57380.6,
+      "price": 57088.3,
+      "prevClose": 57369.65,
       "time": null,
       "state": "live",
       "name": "NIFTY BANK",
       "source": "NSE India"
     },
     "vix": {
-      "price": 10.78,
-      "prevClose": 11.34,
+      "price": 11.28,
+      "prevClose": 10.68,
       "time": null,
       "state": "live",
       "name": "INDIA VIX",
@@ -43,16 +43,16 @@
     },
     "gold": {
       "price": 4476.60009765625,
-      "prevClose": 4491.7001953125,
-      "time": 1788494400000,
+      "prevClose": 4429.7998046875,
+      "time": 1788753600000,
       "state": "live",
       "name": "Gold Dec 26",
       "source": "Yahoo Finance (via yfinance)"
     },
     "brent": {
       "price": 96.27999877929688,
-      "prevClose": 95.5199966430664,
-      "time": 1788494400000,
+      "prevClose": 96.27999877929688,
+      "time": 1788753600000,
       "state": "live",
       "name": "Brent Crude Oil Last Day Financ",
       "source": "Yahoo Finance (via yfinance)"

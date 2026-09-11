@@ -5254,7 +5254,11 @@
     },
     {
       "date": "2026-09-10",
-      "price": 105.05000305175781
+      "price": 107.62999725341797
+    },
+    {
+      "date": "2026-09-11",
+      "price": 105.26000213623047
     }
   ],
   "latest": {
@@ -5262,7 +5266,7 @@
     "price": 115.98,
     "unit": "USD/bbl"
   },
-  "generatedAt": "2026-09-10T14:27:26.832761Z",
+  "generatedAt": "2026-09-11T07:24:17.986250Z",
   "source": "PPAC (ppac.gov.in) + Yahoo Finance (BZ=F)",
   "metadata": {
     "name": "Crude Oil Indian Basket",

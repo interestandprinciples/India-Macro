@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-09-11T07:42:07.175692Z",
+  "generatedAt": "2026-09-11T14:45:18.177415Z",
   "rates": {
     "usdinr": {
-      "price": 95.7020034790039,
+      "price": 95.54000091552734,
       "prevClose": 95.11180114746094,
       "time": null,
       "state": "live",
@@ -10,7 +10,7 @@
       "source": "Yahoo Finance USDINR=X (live forex)"
     },
     "nifty": {
-      "price": 23326.7,
+      "price": 23398.1,
       "prevClose": 23477.8,
       "time": null,
       "state": "live",
@@ -18,7 +18,7 @@
       "source": "NSE India"
     },
     "bank": {
-      "price": 56198.35,
+      "price": 56606.55,
       "prevClose": 56471.95,
       "time": null,
       "state": "live",
@@ -26,7 +26,7 @@
       "source": "NSE India"
     },
     "vix": {
-      "price": 12.38,
+      "price": 12.27,
       "prevClose": 11.8,
       "time": null,
       "state": "live",
@@ -34,15 +34,15 @@
       "source": "NSE India"
     },
     "us10y": {
-      "price": 4.943999767303467,
-      "prevClose": 4.836999893188477,
-      "time": 1789016400000,
+      "price": 4.934000015258789,
+      "prevClose": 4.943999767303467,
+      "time": 1789102800000,
       "state": "live",
       "name": "CBOE Interest Rate 10 Year T No",
       "source": "Yahoo Finance (via yfinance)"
     },
     "gold": {
-      "price": 4387.39990234375,
+      "price": 4412.89990234375,
       "prevClose": 4364.5,
       "time": 1789099200000,
       "state": "live",
@@ -50,7 +50,7 @@
       "source": "Yahoo Finance (via yfinance)"
     },
     "brent": {
-      "price": 105.5999984741211,
+      "price": 105.19000244140625,
       "prevClose": 107.62999725341797,
       "time": 1789099200000,
       "state": "live",

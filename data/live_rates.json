@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-11T14:45:18.177415Z",
+  "generatedAt": "2026-09-11T20:08:27.774199Z",
   "rates": {
     "usdinr": {
       "price": 95.54000091552734,
@@ -34,7 +34,7 @@
       "source": "NSE India"
     },
     "us10y": {
-      "price": 4.934000015258789,
+      "price": 4.974999904632568,
       "prevClose": 4.943999767303467,
       "time": 1789102800000,
       "state": "live",
@@ -42,7 +42,7 @@
       "source": "Yahoo Finance (via yfinance)"
     },
     "gold": {
-      "price": 4412.89990234375,
+      "price": 4390.7001953125,
       "prevClose": 4364.5,
       "time": 1789099200000,
       "state": "live",
@@ -50,7 +50,7 @@
       "source": "Yahoo Finance (via yfinance)"
     },
     "brent": {
-      "price": 105.19000244140625,
+      "price": 104.88999938964844,
       "prevClose": 107.62999725341797,
       "time": 1789099200000,
       "state": "live",

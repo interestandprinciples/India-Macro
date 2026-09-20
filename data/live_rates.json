@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-09-18T14:50:47.918412Z",
+  "generatedAt": "2026-09-20T18:15:52.820647Z",
   "rates": {
     "usdinr": {
       "price": 95.86299896240234,
-      "prevClose": 96.1323013305664,
+      "prevClose": 95.79920196533203,
       "time": null,
       "state": "live",
       "name": "USD/INR (offshore)",
@@ -34,7 +34,7 @@
       "source": "NSE India"
     },
     "us10y": {
-      "price": 5.004000186920166,
+      "price": 4.998000144958496,
       "prevClose": 4.947000026702881,
       "time": 1789707600000,
       "state": "live",
@@ -42,7 +42,7 @@
       "source": "Yahoo Finance (via yfinance)"
     },
     "gold": {
-      "price": 4390.89990234375,
+      "price": 4424.89990234375,
       "prevClose": 4399.7001953125,
       "time": 1789704000000,
       "state": "live",
@@ -50,7 +50,7 @@
       "source": "Yahoo Finance (via yfinance)"
     },
     "brent": {
-      "price": 99.98999786376953,
+      "price": 99.29000091552734,
       "prevClose": 104.81999969482422,
       "time": 1789704000000,
       "state": "live",

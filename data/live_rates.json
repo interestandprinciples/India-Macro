@@ -1,58 +1,58 @@
 {
-  "generatedAt": "2026-09-22T15:12:22.257753Z",
+  "generatedAt": "2026-09-23T15:20:45.969012Z",
   "rates": {
     "usdinr": {
-      "price": 95.58000183105469,
-      "prevClose": 96.01309967041016,
+      "price": 95.7300033569336,
+      "prevClose": 95.71199798583984,
       "time": null,
       "state": "live",
       "name": "USD/INR (offshore)",
       "source": "Yahoo Finance USDINR=X (live forex)"
     },
     "nifty": {
-      "price": 23329.0,
-      "prevClose": 23414.3,
+      "price": 23446.8,
+      "prevClose": 23329.0,
       "time": null,
       "state": "live",
       "name": "NIFTY 50",
       "source": "NSE India"
     },
     "bank": {
-      "price": 56215.55,
-      "prevClose": 56470.65,
+      "price": 56548.9,
+      "prevClose": 56215.55,
       "time": null,
       "state": "live",
       "name": "NIFTY BANK",
       "source": "NSE India"
     },
     "vix": {
-      "price": 10.92,
-      "prevClose": 11.25,
+      "price": 10.29,
+      "prevClose": 11.0,
       "time": null,
       "state": "live",
       "name": "INDIA VIX",
       "source": "NSE India"
     },
     "us10y": {
-      "price": 4.956999778747559,
+      "price": 5.065999984741211,
       "prevClose": 4.9629998207092285,
-      "time": 1790053200000,
+      "time": 1790139600000,
       "state": "live",
       "name": "CBOE Interest Rate 10 Year T No",
       "source": "Yahoo Finance (via yfinance)"
     },
     "gold": {
-      "price": 4365.89990234375,
-      "prevClose": 4383.89990234375,
-      "time": 1790049600000,
+      "price": 4333.60009765625,
+      "prevClose": 4376.39990234375,
+      "time": 1790136000000,
       "state": "live",
       "name": "Gold Dec 26",
       "source": "Yahoo Finance (via yfinance)"
     },
     "brent": {
-      "price": 99.87999725341797,
-      "prevClose": 100.33999633789062,
-      "time": 1790049600000,
+      "price": 96.80000305175781,
+      "prevClose": 99.25,
+      "time": 1790136000000,
       "state": "live",
       "name": "Brent Crude Oil Last Day Financ",
       "source": "Yahoo Finance (via yfinance)"

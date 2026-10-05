@@ -1,58 +1,58 @@
 {
-  "generatedAt": "2026-10-02T16:35:43.726595Z",
+  "generatedAt": "2026-10-05T19:37:34.527936Z",
   "rates": {
     "usdinr": {
-      "price": 96.30000305175781,
-      "prevClose": 95.9271011352539,
+      "price": 96.28299713134766,
+      "prevClose": 96.22480010986328,
       "time": null,
       "state": "live",
       "name": "USD/INR (offshore)",
       "source": "Yahoo Finance USDINR=X (live forex)"
     },
     "nifty": {
-      "price": 22421.95,
-      "prevClose": 22620.45,
+      "price": 22555.75,
+      "prevClose": 22421.95,
       "time": null,
       "state": "live",
       "name": "NIFTY 50",
       "source": "NSE India"
     },
     "bank": {
-      "price": 54450.75,
-      "prevClose": 54633.05,
+      "price": 54714.1,
+      "prevClose": 54450.75,
       "time": null,
       "state": "live",
       "name": "NIFTY BANK",
       "source": "NSE India"
     },
     "vix": {
-      "price": 14.44,
-      "prevClose": 13.49,
+      "price": 14.67,
+      "prevClose": 14.46,
       "time": null,
       "state": "live",
       "name": "INDIA VIX",
       "source": "NSE India"
     },
     "us10y": {
-      "price": 5.258000373840332,
-      "prevClose": 5.236999988555908,
-      "time": 1790917200000,
+      "price": 5.310999870300293,
+      "prevClose": 5.2769999504089355,
+      "time": 1791176400000,
       "state": "live",
       "name": "10-Year Bond",
       "source": "Yahoo Finance (via yfinance)"
     },
     "gold": {
-      "price": 4166.0,
-      "prevClose": 4202.2998046875,
-      "time": 1790913600000,
+      "price": 4169.2001953125,
+      "prevClose": 4162.2998046875,
+      "time": 1791172800000,
       "state": "live",
       "name": "Gold Dec 26",
       "source": "Yahoo Finance (via yfinance)"
     },
     "brent": {
-      "price": 101.66000366210938,
-      "prevClose": 102.30999755859375,
-      "time": 1790913600000,
+      "price": 99.88999938964844,
+      "prevClose": 102.25,
+      "time": 1791172800000,
       "state": "live",
       "name": "Brent Crude Oil Last Day Financ",
       "source": "Yahoo Finance (via yfinance)"

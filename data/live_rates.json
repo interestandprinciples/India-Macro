@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-10-11T15:38:41.614155Z",
+  "generatedAt": "2026-10-12T20:06:44.103949Z",
   "rates": {
     "usdinr": {
-      "price": 96.77999877929688,
+      "price": 95.76000213623047,
       "prevClose": 96.82330322265625,
       "time": null,
       "state": "live",
@@ -10,49 +10,49 @@
       "source": "Yahoo Finance USDINR=X (live forex)"
     },
     "nifty": {
-      "price": 22520.45,
-      "prevClose": 22231.8,
+      "price": 22363.35,
+      "prevClose": 22520.45,
       "time": null,
       "state": "live",
       "name": "NIFTY 50",
       "source": "NSE India"
     },
     "bank": {
-      "price": 55256.65,
-      "prevClose": 54515.05,
+      "price": 54918.0,
+      "prevClose": 55256.65,
       "time": null,
       "state": "live",
       "name": "NIFTY BANK",
       "source": "NSE India"
     },
     "vix": {
-      "price": 14.36,
-      "prevClose": 15.28,
+      "price": 15.24,
+      "prevClose": 14.38,
       "time": null,
       "state": "live",
       "name": "INDIA VIX",
       "source": "NSE India"
     },
     "us10y": {
-      "price": 5.24399995803833,
-      "prevClose": 5.230999946594238,
-      "time": 1791522000000,
+      "price": 5.240000247955322,
+      "prevClose": 5.24399995803833,
+      "time": 1791781200000,
       "state": "live",
       "name": "10-Year Bond",
       "source": "Yahoo Finance (via yfinance)"
     },
     "gold": {
-      "price": 4216.2998046875,
-      "prevClose": 4157.0,
-      "time": 1791518400000,
+      "price": 4193.5,
+      "prevClose": 4216.2998046875,
+      "time": 1791777600000,
       "state": "live",
       "name": "Gold Dec 26",
       "source": "Yahoo Finance (via yfinance)"
     },
     "brent": {
-      "price": 104.72000122070312,
-      "prevClose": 104.27999877929688,
-      "time": 1791518400000,
+      "price": 106.16999816894531,
+      "prevClose": 104.72000122070312,
+      "time": 1791777600000,
       "state": "live",
       "name": "Brent Crude Oil Last Day Financ",
       "source": "Yahoo Finance (via yfinance)"

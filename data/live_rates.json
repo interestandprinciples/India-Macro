@@ -1,58 +1,58 @@
 {
-  "generatedAt": "2026-10-21T15:32:15.613441Z",
+  "generatedAt": "2026-10-22T15:35:00.132522Z",
   "rates": {
     "usdinr": {
-      "price": 94.44999694824219,
-      "prevClose": 94.99359893798828,
+      "price": 94.80799865722656,
+      "prevClose": 94.71640014648438,
       "time": null,
       "state": "live",
       "name": "USD/INR (offshore)",
       "source": "Yahoo Finance USDINR=X (live forex)"
     },
     "nifty": {
-      "price": 22811.35,
-      "prevClose": 22888.95,
+      "price": 22687.65,
+      "prevClose": 22811.35,
       "time": null,
       "state": "live",
       "name": "NIFTY 50",
       "source": "NSE India"
     },
     "bank": {
-      "price": 54976.9,
-      "prevClose": 55488.1,
+      "price": 54925.7,
+      "prevClose": 54976.9,
       "time": null,
       "state": "live",
       "name": "NIFTY BANK",
       "source": "NSE India"
     },
     "vix": {
-      "price": 15.7,
-      "prevClose": 14.77,
+      "price": 15.82,
+      "prevClose": 15.68,
       "time": null,
       "state": "live",
       "name": "INDIA VIX",
       "source": "NSE India"
     },
     "us10y": {
-      "price": 5.115000247955322,
-      "prevClose": 5.117000102996826,
-      "time": 1792558800000,
+      "price": 5.011000156402588,
+      "prevClose": 5.145999908447266,
+      "time": 1792645200000,
       "state": "live",
       "name": "10-Year Bond",
       "source": "Yahoo Finance (via yfinance)"
     },
     "gold": {
-      "price": 4148.7998046875,
-      "prevClose": 4142.60009765625,
-      "time": 1792555200000,
+      "price": 4073.10009765625,
+      "prevClose": 4150.0,
+      "time": 1792641600000,
       "state": "live",
       "name": "Gold Dec 26",
       "source": "Yahoo Finance (via yfinance)"
     },
     "brent": {
-      "price": 109.0999984741211,
-      "prevClose": 108.79000091552734,
-      "time": 1792555200000,
+      "price": 110.88999938964844,
+      "prevClose": 108.81999969482422,
+      "time": 1792641600000,
       "state": "live",
       "name": "Brent Crude Oil Last Day Financ",
       "source": "Yahoo Finance (via yfinance)"

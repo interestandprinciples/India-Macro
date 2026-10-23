@@ -33,7 +33,7 @@
     {
       "fy": "2026-27",
       "month": "Oct",
-      "price": 120.09
+      "price": 120.08
     }
   ],
   "brent_daily": [
@@ -5379,15 +5379,19 @@
     },
     {
       "date": "2026-10-22",
-      "price": 111.80000305175781
+      "price": 113.16999816894531
+    },
+    {
+      "date": "2026-10-23",
+      "price": 111.36000061035156
     }
   ],
   "latest": {
-    "date": "2026-10-21",
-    "price": 116.73,
+    "date": "2026-10-22",
+    "price": 119.99,
     "unit": "USD/bbl"
   },
-  "generatedAt": "2026-10-22T15:17:24.627259Z",
+  "generatedAt": "2026-10-23T15:05:13.583123Z",
   "source": "PPAC (ppac.gov.in) + Yahoo Finance (BZ=F)",
   "metadata": {
     "name": "Crude Oil Indian Basket",

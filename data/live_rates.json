@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-10-31T17:17:18.454546Z",
+  "generatedAt": "2026-11-02T20:39:29.584920Z",
   "rates": {
     "usdinr": {
-      "price": 94.94999694824219,
+      "price": 94.9000015258789,
       "prevClose": 95.15239715576172,
       "time": null,
       "state": "live",
@@ -10,49 +10,49 @@
       "source": "Yahoo Finance USDINR=X (live forex)"
     },
     "nifty": {
-      "price": 23053.1,
-      "prevClose": 22936.75,
+      "price": 23440.8,
+      "prevClose": 23053.1,
       "time": null,
       "state": "live",
       "name": "NIFTY 50",
       "source": "NSE India"
     },
     "bank": {
-      "price": 54686.95,
-      "prevClose": 54909.65,
+      "price": 55002.2,
+      "prevClose": 54686.95,
       "time": null,
       "state": "live",
       "name": "NIFTY BANK",
       "source": "NSE India"
     },
     "vix": {
-      "price": 15.45,
-      "prevClose": 15.12,
+      "price": 15.52,
+      "prevClose": 15.3,
       "time": null,
       "state": "live",
       "name": "INDIA VIX",
       "source": "NSE India"
     },
     "us10y": {
-      "price": 4.928999900817871,
-      "prevClose": 4.988999843597412,
-      "time": 1793336400000,
+      "price": 4.894000053405762,
+      "prevClose": 4.928999900817871,
+      "time": 1793599200000,
       "state": "live",
       "name": "10-Year Bond",
       "source": "Yahoo Finance (via yfinance)"
     },
     "gold": {
-      "price": 3898.89990234375,
-      "prevClose": 4031.39990234375,
-      "time": 1793332800000,
+      "price": 3951.300048828125,
+      "prevClose": 3898.89990234375,
+      "time": 1793595600000,
       "state": "live",
       "name": "Gold Dec 26",
       "source": "Yahoo Finance (via yfinance)"
     },
     "brent": {
-      "price": 117.63999938964844,
-      "prevClose": 114.87999725341797,
-      "time": 1793332800000,
+      "price": 104.38999938964844,
+      "prevClose": 117.63999938964844,
+      "time": 1793595600000,
       "state": "live",
       "name": "Brent Crude Oil Last Day Financ",
       "source": "Yahoo Finance (via yfinance)"

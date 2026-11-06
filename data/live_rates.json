@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-06T05:55:46.377044Z",
+  "generatedAt": "2026-11-06T17:47:42.725277Z",
   "rates": {
     "usdinr": {
-      "price": 94.11250305175781,
+      "price": 93.8949966430664,
       "prevClose": 94.5154037475586,
       "time": null,
       "state": "live",
@@ -10,7 +10,7 @@
       "source": "Yahoo Finance USDINR=X (live forex)"
     },
     "nifty": {
-      "price": 24593.0,
+      "price": 25030.35,
       "prevClose": 24536.6,
       "time": null,
       "state": "live",
@@ -18,7 +18,7 @@
       "source": "NSE India"
     },
     "bank": {
-      "price": 57773.5,
+      "price": 59086.0,
       "prevClose": 57773.65,
       "time": null,
       "state": "live",
@@ -26,7 +26,7 @@
       "source": "NSE India"
     },
     "vix": {
-      "price": 17.13,
+      "price": 17.66,
       "prevClose": 15.58,
       "time": null,
       "state": "live",
@@ -34,15 +34,15 @@
       "source": "NSE India"
     },
     "us10y": {
-      "price": 4.836999893188477,
-      "prevClose": 4.894000053405762,
-      "time": 1793858400000,
+      "price": 4.845000267028809,
+      "prevClose": 4.836999893188477,
+      "time": 1793944800000,
       "state": "live",
       "name": "10-Year Bond",
       "source": "Yahoo Finance (via yfinance)"
     },
     "gold": {
-      "price": 4053.800048828125,
+      "price": 4066.199951171875,
       "prevClose": 4113.5,
       "time": 1793941200000,
       "state": "live",
@@ -50,7 +50,7 @@
       "source": "Yahoo Finance (via yfinance)"
     },
     "brent": {
-      "price": 99.66000366210938,
+      "price": 97.4800033569336,
       "prevClose": 98.29000091552734,
       "time": 1793941200000,
       "state": "live",

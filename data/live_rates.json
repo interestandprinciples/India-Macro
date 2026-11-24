@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-23T22:20:36.883888Z",
+  "generatedAt": "2026-11-24T20:57:33.389401Z",
   "rates": {
     "usdinr": {
-      "price": 92.9000015258789,
-      "prevClose": 93.29499816894531,
+      "price": 92.91000366210938,
+      "prevClose": 92.6729965209961,
       "time": null,
       "state": "live",
       "name": "USD/INR (offshore)",
@@ -34,25 +34,25 @@
       "source": "NSE India"
     },
     "us10y": {
-      "price": 4.918000221252441,
-      "prevClose": 4.9120001792907715,
-      "time": 1795413600000,
+      "price": 4.904000282287598,
+      "prevClose": 4.918000221252441,
+      "time": 1795500000000,
       "state": "live",
-      "name": "10-Year Bond",
+      "name": "CBOE Interest Rate 10 Year T No",
       "source": "Yahoo Finance (via yfinance)"
     },
     "gold": {
-      "price": 3634.39990234375,
-      "prevClose": 3515.39990234375,
-      "time": 1795410000000,
+      "price": 3548.5,
+      "prevClose": 3651.39990234375,
+      "time": 1795496400000,
       "state": "live",
       "name": "Gold Dec 26",
       "source": "Yahoo Finance (via yfinance)"
     },
     "brent": {
-      "price": 86.72000122070312,
-      "prevClose": 92.56999969482422,
-      "time": 1795410000000,
+      "price": 88.12999725341797,
+      "prevClose": 89.37000274658203,
+      "time": 1795496400000,
       "state": "live",
       "name": "Brent Crude Oil Last Day Financ",
       "source": "Yahoo Finance (via yfinance)"
